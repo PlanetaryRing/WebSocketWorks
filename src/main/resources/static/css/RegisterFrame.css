@@ -1,0 +1,55 @@
+.registerBody{
+    width: 500px;
+    height: 550px;
+    margin: 0 auto;
+    margin-top: 50px;
+    position: relative;
+
+    background-color: #eceef1;
+}
+
+.registerTitle{
+    font-size: 40px;
+    font-weight: bold;
+    color: #364150;
+}
+
+.formCell{
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    position: relative;
+}
+
+.inputText{
+    width: 75%;
+    height: 60px;
+    padding-left: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+
+
+    font-size: 20px;
+    line-height: 60px;
+
+    background-color: #dde3ec;
+}
+
+input[type="submit"]{
+    width: 30%;
+    height: 60px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 12.5%;
+
+    background-color: #6c7a8d;
+
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 60px;
+    color: white;
+}

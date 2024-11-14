@@ -1,0 +1,634 @@
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.eot?4r9756');
+    src: url('../fonts/icomoon.eot?4r9756#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf?4r9756') format('truetype'),
+        url('../fonts/icomoon.woff?4r9756') format('woff'),
+        url('../fonts/icomoon.svg?4r9756#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+nav {
+    width: 100%;
+    height: 60px;
+
+    background-color: #6cf;
+}
+
+.decorationBar {
+    width: 100%;
+    height: 60px;
+    background-color: #6c7a8d;
+}
+
+.sidebar-infoContainer {
+    width: 960px;
+    min-height: 600px;
+    margin: 0 auto;
+    margin-top: 30px;
+    position: relative;
+
+    background-color: #eceef1;
+}
+
+
+/* 侧边栏 */
+.sidebar {
+    width: 15%;
+    height: 100%;
+
+    border-right: 1px solid #999;
+
+    background-color: #eceef1;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.labelContainer-header {
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #999;
+
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #6c7a8d;
+}
+
+.formOption {
+    width: 100%;
+    height: 60px;
+
+
+    font-size: 14px;
+    color: black;
+
+}
+
+.labelContainer .selectedOption {
+    background-color: #6c7a8d;
+    color: white;
+}
+
+.shadowOwner {
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.shadowOwner:hover {
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.3);
+}
+
+
+/* 表单主体 */
+.infoContainer {
+    width: 85%;
+    height: 100%;
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+}
+
+.infoHeader {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+
+    border-bottom: 1px solid #999;
+
+    font-size: 18px;
+}
+
+/* 标签图标 */
+.headerIcon {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+    font-family: "icomoon";
+}
+
+/* 选择的表单名称 */
+.nowLabelName {
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    left: 50px;
+    top: 0;
+
+}
+
+.infoMain {
+    width: 100%;
+    height: calc(100% - 50px);
+    position: relative;
+}
+
+
+/* 用户头像 */
+.profile-picture {
+    display: block;
+    width: 75px;
+    height: 75px;
+    border-radius: 50px;
+    border: 1px solid black;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    position: relative;
+    top: 10px;
+}
+
+.selfInfoCell {
+    width: 80%;
+    min-height: 60px;
+    margin: 0 auto;
+
+
+
+    border-bottom: 1px solid #999;
+    position: relative;
+
+}
+
+.userInfoTable .letf {
+    width: 15%;
+    min-height: 60px;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    font-size: 18px;
+    line-height: 60px;
+
+    text-align: right;
+}
+
+.userInfoTable .right {
+    width: 80%;
+    min-height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    font-size: 18px;
+    line-height: 60px;
+    text-align: left;
+}
+
+.userInfoTable input[name="username"] {
+    width: 150px;
+    height: 40px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    padding-left: 10px;
+
+    border-radius: 10px;
+
+    font-size: 18px;
+}
+
+.userInfoTable input[name="gender"] {
+    width: 150px;
+    height: 40px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+
+    border-radius: 10px;
+
+    font-size: 18px;
+}
+
+.selfDescription {
+    width: 500px;
+    margin-top: 60px;
+    margin-left: 80px;
+    font-size: 14px;
+}
+
+.submitUserInfo {
+    width: 100px;
+    height: 35px;
+
+    border-radius: 10px;
+
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: #6c7a8d;
+
+    font-size: 14px;
+
+    color: white;
+}
+
+/* *********************************************** */
+/* 设置头像部分的样式开始 */
+
+/* 头像预览框 */
+.selectedImage {
+    width: 350px;
+    height: 350px;
+    border: 1px solid #364150;
+    margin-top: 20px;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.nowImage {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #364150;
+
+    border-radius: 100px;
+
+    position: absolute;
+    top: 20px;
+    left: 400px;
+}
+
+.newHeadPic {
+    width: 350px;
+    height: 35px;
+    margin-left: 20px;
+    margin-top: 15px;
+    position: relative;
+
+}
+
+.imageSelector-cover {
+    width: 100px;
+    height: 35px;
+    position: absolute;
+    top: 0;
+    left: 25px;
+
+    border-radius: 10px;
+    background-color: #6c7a8d;
+
+    text-align: center;
+    font-size: 14px;
+    line-height: 35px;
+    color: white;
+
+    cursor: pointer;
+
+}
+
+.imageSelector {
+    display: none;
+}
+
+.submitNewHeadPic {
+    width: 100px;
+    height: 35px;
+
+    position: absolute;
+    right: 25px;
+    top: 0;
+
+    border-radius: 10px;
+    background-color: #6c7a8d;
+
+    color: white;
+}
+
+.selfInfo-maintain {
+    display: block;
+}
+
+.portrait-maintain {
+    display: none;
+}
+
+.manageJoinedGroup-maintain {
+    display: none;
+}
+
+.searchGroup-maintain {
+    display: none;
+}
+
+.requestInfo-maintain {
+    display: none;
+}
+
+/* ********************************** */
+/* 开始设置管理所加入的群组 */
+.manageJoinedGroup-maintain {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.joinedGroupList {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.joinedGroupList .joinedGroupLabel {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-bottom: 1px solid #6c7a8d;
+}
+
+.manageJoinedGroup-maintain .groupHeadPic {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border: 1px solid black;
+
+    background-color: white;
+    position: absolute;
+    left: 25px;
+    top: 5px;
+}
+
+.joinedGroupName {
+    width: 300px;
+    height: 100%;
+    position: absolute;
+    left: 100px;
+    top: 0;
+
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 60px;
+    color: #6c7a8d;
+}
+
+.joinedGroupId {
+    width: 150px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 225px;
+    font-size: 16px;
+    line-height: 60px;
+    color: #6c7a8d;
+}
+
+.quitTheGroupBtn {
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    background-color: #6c7a8d;
+
+    text-align: center;
+    font-size: 14px;
+    line-height: 35px;
+    color: white;
+
+    cursor: pointer;
+}
+
+/* ********************************** */
+/* 搜索开始 */
+.searchGroup-maintain{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.searchBox {
+    width: 100%;
+    height: 30px;
+
+    position: relative;
+
+    border-bottom: 1px solid #6c7a8d;
+}
+
+.searchInput {
+    width: 80%;
+    height: 24px;
+
+    border-radius: 5px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    left: 5%;
+    top: 3px;
+}
+
+.submitGroupQuery {
+    width: 50px;
+    height: 24px;
+
+    border-radius: 5px;
+
+    background-color: #6c7a8d;
+    position: absolute;
+    top: 3px;
+    right: 65px;
+
+    color: white;
+}
+
+.searchGroupResult {
+    width: 100%;
+    height: calc(100% - 30px);
+    max-height: calc(100% - 30px);
+    overflow-y: auto;
+    position: relative;
+}
+
+.searchGroupLabel {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-bottom: 1px solid #6c7a8d;
+}
+
+.groupHeadPic {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border: 1px solid black;
+
+    background-color: white;
+    position: absolute;
+    left: 25px;
+    top: 5px;
+}
+
+.searchGroupName {
+    width: 300px;
+    height: 100%;
+    position: absolute;
+    left: 100px;
+    top: 0;
+
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 60px;
+    color: #6c7a8d;
+}
+
+.searchGroupId {
+    width: 150px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 225px;
+    font-size: 16px;
+    line-height: 60px;
+    color: #6c7a8d;
+}
+
+.joinTheGroupBtn {
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    background-color: #6c7a8d;
+
+    text-align: center;
+    font-size: 14px;
+    line-height: 35px;
+    color: white;
+
+    cursor: pointer;
+}
+
+/* ********************************** */
+/* 群通知开始 */
+.requestInfo-maintain{
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+}
+
+.groupNoticeBox{
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.groupNoticeLabel{
+    width: 100%;
+    height: 60px;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-bottom: 1px solid #6c7a8d;
+}
+
+.userHeadPic{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border: 1px solid black;
+
+    background-color: white;
+    position: absolute;
+    left: 25px;
+    top: 5px;
+}
+
+.groupNoticeUsername{
+    width: 150px;
+    height: 30px;
+    position: absolute;
+    top: 6px;
+    left: 80px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #6c7a8d;
+    line-height: 30px;
+}
+
+.groupNoticeUserId{
+    width: 150px;
+    height: 14px;
+    position: absolute;
+    bottom: 12px;
+    left: 80px;
+    font-size: 14px;
+    color: #999;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.groupNoticeDescription{
+    width: 300px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 200px;
+
+    font-size: 14px;
+    line-height: 60px;
+}
+
+.groupNoticeBtn{
+    width: 80px;
+    height: 36px;
+    border-radius: 10px;
+}
+
+.accept{
+    position: absolute;
+    top: 12px;
+    right: 160px;
+    background-color: lightgreen;
+
+    font-size: 16px;
+    color: white;
+}
+
+.refuse{
+    position: absolute;
+    top: 12px;
+    right: 60px;
+    background-color: #e91b64;
+
+    font-size: 16px;
+    color: white;
+}
+
+.groupNoticeResult{
+    width: 150px;
+    height: 100%;
+    position: absolute;
+    right: 30px;
+    top: 0;
+    font-size: 14px;
+    line-height: 60px;
+    color: #999;
+    font-style: italic;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <script src="../../js/api/registerApi.js"></script>
+    <link rel="stylesheet" href="../../css/RegisterFrame.css">
+    <link rel="stylesheet" href="../../css/init.css">
+</head>
+
+<body style="position: relative;background-color: #364150;">
+    <div class="registerBody">
+        <div class="registerTitle formCell">
+            注册信息
+        </div>
+        <form class="newUserInfo">
+            <div class="formCell">
+                <input class="inputText" type="text" name="username" placeholder="您的用户名 6~25位">
+            </div>
+            <div class="formCell">
+                <input class="inputText" type="password" name="password" placeholder="请输入密码 6~25位 不含有非拉丁字符">
+            </div>
+            <div class="formCell">
+                <input class="inputText" type="password" name="repeatedPassword" placeholder="请重复密码">
+            </div>
+            <div class="formCell">
+                <input type="submit">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let checkCharLegality = function (loginInfo, type) {
+            // type该为中文
+            if (loginInfo.length === 0) {
+                alert(type + "不能为空");
+                return false;
+            }
+            if (loginInfo.length < 6 || loginInfo.length > 25) {
+                alert(type + "应该在6~25个字符内");
+                return false;
+            } else if (type == "密码" || type == "校验密码") {
+                for (let i = 0; i < loginInfo.length; i++) {
+                    if (loginInfo.charCodeAt(i) > 127) {
+                        alert("密码不应该包含特殊字符'" + loginInfo[i] + "'!");
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        let form = document.querySelector(".newUserInfo");
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            let formData = new FormData(form);
+            let userInfo = {
+                username: formData.get("username"),
+                password: formData.get("password"),
+                repeatedPassword: formData.get("repeatedPassword")
+            };
+            if (!checkCharLegality(userInfo.username, "用户名")) {
+                return;
+            }
+            if (!checkCharLegality(userInfo.password, "密码")) {
+                return;
+            }
+            if (!checkCharLegality(userInfo.repeatedPassword, "校验密码")) {
+                return;
+            }
+            if (userInfo.password != formData.get("repeatedPassword")) {
+                alert("两次输入的密码不同!");
+                return;
+            }
+
+            registerUser(userInfo, function (isSuccess, data) {
+                if (isSuccess) {
+                    if (data.code == 500) {
+                        alert(data.msg);
+                        return;
+                    } else if (data.code == 200) {
+                        alert("注册成功!");
+                        location.href = JSON.parse(data.data).url;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

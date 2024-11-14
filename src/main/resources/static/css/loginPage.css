@@ -1,0 +1,129 @@
+.loginBody{
+    /* 登录框的主体 */
+    width: 500px;
+    height: 600px;
+    margin: 0 auto;
+    margin-top: 50px;
+    position: relative;
+}
+
+.loginBody .logo{
+    /* 登录界面 */
+    width: 100%;
+    height: 100px;
+
+    text-align: center;
+
+    line-height: 100px;
+    color: white;
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+.loginTypeInBox{
+    /* 登录界面中间那一块 */
+    width: 100%;
+    height: 340px;
+    position: relative;
+    background-color: #eceef1;
+}
+
+
+.loginBody .title{
+    /* 登录的大字,代表这是一个登录框 */
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    text-align: center;
+    line-height: 100px;
+    font-size: 50px;
+    color: #4db3a5;
+}
+
+.loginBody .userInfo{
+    /* 用户输入的表单 */
+    width: 100%;
+    height: 300px;
+    background-color: #114514;
+
+    position: absolute;
+    top: 100px;
+    left: 0;
+}
+
+.loginBody .cell{
+    /* 装载输入框的三个div */
+    width: 100%;
+    height: 100px;
+    background-color: #eceef1;
+
+    position: relative;
+}
+
+.inputTextBox{
+    width: 75%;
+    height: 60px;
+    padding-left: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+
+
+    font-size: 20px;
+    line-height: 60px;
+
+    background-color: #dde3ec;
+}
+input[type="submit"]{
+    width: 120px;
+    height: 60px;
+    background-color: #6c7a8d;
+
+    position: absolute;
+    left: 12.5%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    text-align: center;
+    line-height: 60px;
+    font-size: 25px;
+    color: white;
+    font-weight: bolder;
+}
+
+input[type="submit"]:hover{
+    background-color: lightblue;
+}
+
+.forgotPassword{
+    width: 200px;
+    height: 60px;
+
+
+    position: absolute;
+    right: 12.5%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    font-size: 20px;
+    line-height: 60px;
+    color: #6c7a8d;
+}
+
+.createAccount{
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    background-color: #6c7a8d;
+
+    color: #c3cedd;
+    font-size: 25px;
+    font-weight: bolder;
+}

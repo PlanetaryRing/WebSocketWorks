@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/init.css">
+    <link rel="stylesheet" href="../../css/selfInfoMaintain.css">
+    <script src="../../js/until/autoReload.js"></script>
+    <title>个人信息维护</title>
+</head>
+
+<body style="position: relative;background-color: #364150;">
+    <!-- <nav></nav> -->
+    <div class="decorationBar">
+        <!-- 这是装饰横条 -->
+    </div>
+    <div class="sidebar-infoContainer">
+        <div class="sidebar">
+            <div class="labelContainer-header">
+                功能管理
+            </div>
+            <ul class="labelContainer">
+                <li>
+                    <button class="formOption selectedOption shadowOwner" name="selfInfo">个人信息</button>
+                </li>
+
+                <li>
+                    <button class="formOption shadowOwner" name="portrait">修改头像</button>
+                </li>
+
+                <li>
+                    <button class="formOption shadowOwner" name="manageJoinedGroup">加入的群组</button>
+                </li>
+
+                <li>
+                    <button class="formOption shadowOwner" name="searchGroup">搜索群组</button>
+                </li>
+
+                <li>
+                    <button class="formOption shadowOwner" name="requestInfo">群通知</button>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="infoContainer">
+            <div class="infoHeader">
+                <div class="headerIcon"></div>
+                <div class="nowLabelName">个人信息</div>
+            </div>
+            <div class="infoMain">
+                <!-- 统一命名 XXXX-maintain 在修改的时候将其对应的设置为不可见实现隐藏 -->
+                <div class="selfInfo-maintain">
+                    <img type="file" class="profile-picture shadowOwner"
+                        src="../../defaultImg/0f9716dab6fd526661ee696da418972bd507365b.gif">
+                    <form name="userInfo" class="userInfoTable">
+                        <div class="selfInfoCell shadowOwner">
+                            <div class="letf">用户名:</div>
+                            <div class="right"><input type="text" name="username" value="Agarwood"></div>
+                        </div>
+
+                        <div class="selfInfoCell">
+                            <div class="letf">用户ID:</div>
+                            <div class="right">101</div>
+                        </div>
+
+                        <div class="selfInfoCell shadowOwner">
+                            <div class="letf">密码:</div>
+                            <div class="right"><button class="updatePasswordBtn"
+                                    style="text-decoration: underline;">修改密码</button></div>
+                        </div>
+
+                        <div class="selfInfoCell shadowOwner">
+                            <div class="letf">个人简介:</div>
+                            <textarea name="selfDescription" cols="30" rows="10" class="selfDescription"
+                                placeholder="请输入个人简介"></textarea>
+                        </div>
+                    </form>
+                    <button class="submitUserInfo shadowOwner">保存修改</button>
+                </div>
+
+                <!-- 修改头像的部分 -->
+                <div class="portrait-maintain">
+                    <img class="selectedImage" src="#">
+                    <img class="nowImage" src="#" alt="用户头像">
+                    <form class="newHeadPic">
+                        <input type="file" class="imageSelector" id="customFileInput" accept="image/*">
+                        <label for="customFileInput" class="imageSelector-cover shadowOwner">选择图片</label>
+                        <input type="submit" class="submitNewHeadPic shadowOwner" value="保存头像">
+                    </form>
+                </div>
+                <script>
+                    // 自动回显上传的图片
+                    let previewImage = function () {
+                        console.log("选择了图片")
+                        // 获取文件选择框的引用
+                        let imageSelector = document.querySelector(".imageSelector");
+                        // 获取文件
+                        let file = imageSelector.files[0];
+                        if (file) {
+                            // 创建 FileReader 对象
+                            let reader = new FileReader();
+
+                            // 设置回调函数，当文件读取完成时触发
+                            reader.onload = function (e) {
+                                // 将图片源设置为读取的结果
+                                document.querySelector('.selectedImage').src = e.target.result;
+                            };
+
+                            // 读取文件内容
+                            reader.readAsDataURL(file);
+                        }
+                    };
+                    document.querySelector(".imageSelector").addEventListener("change", previewImage);
+                </script>
+
+                <!-- 管理加入的群组 -->
+                <div class="manageJoinedGroup-maintain">
+                    <ul class="joinedGroupList">
+                        <li>
+                            <div class="joinedGroupLabel">
+                                <input type="hidden" name="groupId" value="100">
+                                <img class="groupHeadPic"
+                                    src="../../defaultImg/0f9716dab6fd526661ee696da418972bd507365b.gif">
+                                <div class="joinedGroupName">测试群组</div>
+                                <div class="joinedGroupId">群号:337845818</div>
+                                <button class="quitTheGroupBtn shadowOwner">退出该群</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 搜索群组 -->
+                <div class="searchGroup-maintain">
+                    <form class="searchBox">
+                        <input type="text" name="searchInput" class="searchInput" placeholder="请输入群组的名字或群号">
+                        <input type="submit" class="submitGroupQuery shadowOwner" value="搜索">
+                    </form>
+                    <ul class="searchGroupResult">
+                        <li>
+                            <div class="searchGroupLabel">
+                                <input type="hidden" name="groupId" value="100">
+                                <img class="groupHeadPic"
+                                    src="../../defaultImg/0f9716dab6fd526661ee696da418972bd507365b.gif">
+                                <div class="searchGroupName">测试群组</div>
+                                <div class="searchGroupId">群号:337845818</div>
+                                <button class="joinTheGroupBtn shadowOwner">申请加群</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 群通知 -->
+                <div class="requestInfo-maintain">
+                    <ul class="groupNoticeBox">
+                        <li>
+                            <div class="groupNoticeLabel">
+                                <!-- 退出群组 -->
+                                <img class="userHeadPic" src="../../defaultImg/0f9716dab6fd526661ee696da418972bd507365b.gif" alt="用户头像">
+                                <div class="groupNoticeUsername">神秘人</div>
+                                <div class="groupNoticeUserId">#114514</div>
+                                <div class="groupNoticeDescription">神秘人退出了测试群组</div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="groupNoticeLabel">
+                                <!-- 退出群组 -->
+                                <img class="userHeadPic" src="../../defaultImg/0f9716dab6fd526661ee696da418972bd507365b.gif" alt="用户头像">
+                                <div class="groupNoticeUsername">神秘人</div>
+                                <div class="groupNoticeUserId">#114514</div>
+                                <div class="groupNoticeDescription">神秘人申请加入测试群组</div>
+                                <button class="groupNoticeBtn accept shadowOwner">同 意</button>
+                                <button class="groupNoticeBtn refuse shadowOwner">拒 绝</button>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="groupNoticeLabel">
+                                <!-- 退出群组 -->
+                                <img class="userHeadPic" src="../../defaultImg/0f9716dab6fd526661ee696da418972bd507365b.gif" alt="用户头像">
+                                <div class="groupNoticeUsername">神秘人</div>
+                                <div class="groupNoticeUserId">#114514</div>
+                                <div class="groupNoticeDescription">神秘人申请加入测试群组</div>
+                                <div class="groupNoticeResult">已拒绝</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let data = {
+            selectedLabel: "selfInfo",
+
+        };
+
+        let switchSelectedLabel = function (event) {
+            // 获取当前选择的标签,去除掉包含的类标记,并设置对应的表单显示属性为不可见
+            let lastSelection = document.querySelector(".selectedOption");
+            let lastSelectionName = lastSelection.name;
+            document.querySelector("." + lastSelectionName + "-maintain").style.display = "none";
+            lastSelection.classList.remove("selectedOption");
+            // 为点击的按钮添加选择样式
+            event.target.classList.add("selectedOption");
+            document.querySelector(".nowLabelName").innerText = document.querySelector(".selectedOption").innerText;
+            data.selectedLabel = document.querySelector(".selectedOption").name;
+            // 设置选择的按钮的对应表单为可见
+            document.querySelector("." + event.target.name + "-maintain").style.display = "block";
+            data.selectedLabel = event.target.name;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // setAutoReload(7000);
+            let labels = document.querySelectorAll(".labelContainer .formOption");
+            for (let i = 0; i < labels.length; i++) {
+                labels[i].addEventListener("click", switchSelectedLabel);
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>

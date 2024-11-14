@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agarwood.webchatapp.mapper.UserMapper">
+    <resultMap type="User" id="UserResult">
+        <result property="userId" column="user_id" />
+        <result property="username" column="username" />
+        <result property="cookie" column="cookie" />
+        <result property="headSculptureUrl" column="head_sculpture_url" />
+    </resultMap>
+
+    <select id="getSelfInfo" parameterType="User" resultMap="UserResult">
+        SELECT user_id,username,head_sculpture_url FROM `user` WHERE user_id=#{userId};
+    </select>
+
+    <select id="verifyUser" parameterType="User" resultMap="UserResult">
+        SELECT user_id,username,head_sculpture_url FROM `user` WHERE username=#{username} and password=#{password};
+    </select>
+
+    <insert id="registerUser" parameterType="User">
+        INSERT IGNORE INTO `user` (username,`password`) VALUES (#{username},#{password});
+    </insert>
+
+    <select id="queryByUsername" parameterType="User">
+        SELECT user_id FROM `user` WHERE username=#{username};
+    </select>
+</mapper>

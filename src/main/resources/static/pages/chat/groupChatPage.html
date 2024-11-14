@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../css/ChatPageFrame.css">
+    <link rel="stylesheet" type="text/css" href="../../css/init.css">
+    <script src="../../js/until/labelFactory.js"></script>
+    <script src="../../js/until/until.js"></script>
+    <script src="../../js/api/groupChatPageApi.js"></script>
+    <script src="../../js/public_config.js"></script>
+    <title>群组列表</title>
+</head>
+
+<body>
+<div class="mainbody">
+    <div class="group-list-body">
+        <div class="picture-userInfo-setting">
+            <div class="picture">
+
+                <div class="user-detail">
+                    <div class="indicator">
+                        <!-- 这个标签不要填写内容 -->
+                    </div>
+                    <div class="detail">
+
+                        <!-- 这个是用户的头像列表 -->
+                    </div>
+                </div>
+            </div>
+            <div class="userInfo">
+                <div class="username"></div>
+                <div class="onlinestatus">在线</div>
+            </div>
+            <div class="setting">
+                
+            </div>
+        </div>
+        <div class="scrollable-list-container">
+            <ul class="group-list">
+                <li>
+                    <button class="group-label">
+                        <div class="group-picture">
+
+                        </div>
+                        <div class="group-msg-container">
+                            <div class="group-name">
+
+                                <div class="latest-msg-time"></div>
+                            </div>
+
+                            <div class="latest-msg">
+
+                            </div>
+                        </div>
+                    </button>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="group-message-body">
+        <!-- 消息和通知 -->
+        <div class="group-nav">
+            <!-- 这是群组的导航栏 -->
+            <div class="group-detail-name">
+                <button class="returnGroupList"></button>&emsp;<span class="selected-group-name"></span>
+                <!--返回按钮-->
+            </div>
+            <div class="group-function-options">
+                <ul class="function-options-container">
+                    <li class="option-box">
+                        <button>
+                            <!-- 竖立的三个点 -->
+                        </button>
+                    </li>
+
+                    <li class="option-box">
+                        <button>
+                            <!-- 刷新按钮 -->
+                        </button>
+                    </li>
+
+                    <li class="option-box">
+                        <button>
+                            
+                        </button>
+                    </li>
+
+                    <li class="option-box">
+                        <button>
+                            
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="group-msg-member">
+            <!-- 此处包含群消息和输入框 -->
+            <div class="group-msg-textbox">
+                <div class="msgbox">
+                    <!--  -->
+                    <ul>
+                        <!-- 群聊开始 -->
+
+                    </ul>
+                </div>
+                <script>
+                    let formatMsgbar = function () {
+                        let msgbars = document.querySelectorAll(".msgbar");
+                        let msgtexts = document.querySelectorAll(".msg-text");
+                        for (let i = 0; i < msgbars.length; i++) {
+                            let msgHeight = msgtexts[i].offsetHeight;
+                            msgbars[i].style.height = `${msgHeight + 20}px`;
+                        }
+                    };
+
+                    (function () {
+                        let formatMsgbar = function () {
+                            let msgbars = document.querySelectorAll(".msgbar");
+                            let msgtexts = document.querySelectorAll(".msg-text");
+                            for (let i = 0; i < msgbars.length; i++) {
+                                let msgHeight = msgtexts[i].offsetHeight;
+                                msgbars[i].style.height = `${msgHeight + 20}px`;
+                            }
+                        }
+                        formatMsgbar();
+                        window.addEventListener('resize', formatMsgbar);
+                        let isMsgDragging = false;
+                        let msgStartX, msgStartY, msgScrollLeft, msgScrollTop;
+
+                        let msgScrollableDiv = document.querySelector(".msgbox");
+                        let msgInnerContent = document.querySelector(".msgbox ul");
+                        msgScrollableDiv.addEventListener('mousedown', function (e) {
+                            isMsgDragging = true;
+                            msgStartX = e.pageX - msgScrollableDiv.offsetLeft;
+                            msgStartY = e.pageY - msgScrollableDiv.offsetTop;
+                            msgScrollLeft = msgScrollableDiv.scrollLeft;
+                            msgScrollTop = msgScrollableDiv.scrollTop;
+                        });
+
+                        document.addEventListener('mousemove', function (e) {
+                            if (!isMsgDragging) return;
+                            e.preventDefault();
+                            let x = e.pageX - msgScrollableDiv.offsetLeft;
+                            let y = e.pageY - msgScrollableDiv.offsetTop;
+                            let walkX = x - msgStartX;
+                            let walkY = y - msgStartY;
+                            msgScrollableDiv.scrollLeft = msgScrollLeft - walkX;
+                            msgScrollableDiv.scrollTop = msgScrollTop - walkY;
+                        });
+
+                        document.addEventListener('mouseup', function () {
+                            isMsgDragging = false;
+                        });
+                    })()
+                </script>
+                <div class="textbox">
+                    <div class="input-functions-bar">
+                        <ul class="input-functions-container">
+                            <li>
+                                <button>
+                                    <!-- 图片 -->
+                                </button>
+                            </li>
+                            <li>
+                                <button>
+                                    <!-- 坐标 -->
+                                </button>
+                            </li>
+                            <li>
+                                <button>
+                                    <!-- 语音 -->
+                                </button>
+                            </li>
+                            <li>
+                                <button>
+                                    <!-- 附件 -->
+                                </button>
+                            </li>
+                        </ul>
+                        <button class="history-msg"></button>
+                    </div>
+                    <textarea name="inputmsg" id="" cols="30" rows="10" class="inputmsg"></textarea>
+                    <button class="submit">发 送</button>
+                </div>
+            </div>
+            <div class="memberlist-notice">
+                <!-- 包含群公告和群成员 -->
+                <div class="notice">
+                    <div class="title-bar">
+                        <div class="notice-title">
+                            公告:
+                        </div>
+                    </div>
+                    <div class="scrollable-notice-container">
+
+                    </div>
+                </div>
+                <div class="memberlist">
+                    <div class="title-bar">
+                        <div class="member-title-search">
+                            <div class="member-title">
+                                群成员
+                            </div>
+                            <button class="member-search">
+                                
+                            </button>
+                        </div>
+                    </div>
+                    <div class="scrollable-member-container">
+                        <ul class="member-list">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    (function () {
+        let isDragging = false;
+        let startX, startY, scrollLeft, scrollTop;
+
+        let scrollableDiv = document.querySelector(".scrollable-list-container");
+        let innerContent = document.querySelector(".group-list");
+        scrollableDiv.addEventListener('mousedown', function (e) {
+            isDragging = true;
+            startX = e.pageX - scrollableDiv.offsetLeft;
+            startY = e.pageY - scrollableDiv.offsetTop;
+            scrollLeft = scrollableDiv.scrollLeft;
+            scrollTop = scrollableDiv.scrollTop;
+        });
+
+        document.addEventListener('mousemove', function (e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            let x = e.pageX - scrollableDiv.offsetLeft;
+            let y = e.pageY - scrollableDiv.offsetTop;
+            let walkX = x - startX;
+            let walkY = y - startY;
+            scrollableDiv.scrollLeft = scrollLeft - walkX;
+            scrollableDiv.scrollTop = scrollTop - walkY;
+        });
+
+        document.addEventListener('mouseup', function () {
+            isDragging = false;
+        });
+    })()
+</script>
+
+<script>
+
+    data = {
+        userId: "",
+        username: "",
+        groupInfoList: undefined,
+        selectedGroupId: undefined,
+        selectedGroupName: undefined,
+        groupListInfo: undefined,
+        socket: undefined,
+        isAutoScroll:true,
+    };
+    // 打开WebSocket
+    let openWebSocket = function () {
+        data.socket = new WebSocket("ws://"+WEBSOCKET_HOST+"/websocket/" + data.userId);
+        data.socket.addEventListener("message", (event) => {
+            let msgBox = document.querySelector(".msgbox ul");
+            let msgRcv = JSON.parse(event.data);
+            if(msgRcv.groupId!=data.selectedGroupId){
+                return;
+            }
+            let msgLabel = null;
+            if (msgRcv.userId == data.userId) {
+                msgLabel = createMessageLabel(msgRcv, "self");
+            } else {
+                msgLabel = createMessageLabel(msgRcv, "friend");
+            }
+            msgBox.appendChild(msgLabel);
+            if(data.isAutoScroll==true){
+                const msgBoxContainer=document.querySelector(".msgbox");
+                msgBoxContainer.scrollTop = 0;
+            }
+            formatMsgbar();
+        });
+        data.socket.addEventListener("open",(event)=>{
+            console.log("开始建立连接");
+        });
+        data.socket.addEventListener("close",(event)=>{
+            console.log("连接已断开");
+        });
+        data.socket.addEventListener("error", (event) => {
+            console.error('WebSocket出现错误:', event);
+        });
+
+    }
+
+    // 加载最近的20条消息
+    let loadMessage = function () {
+        console.log("执行了loadMessage")
+        let msgList = null;
+        getGroupMessage({userId: data.userId, groupId: data.selectedGroupId}, function (isSuccess, responseData) {
+            if (isSuccess) {
+                msgList = responseData;
+                console.log("[loadMessage]收到的信息是:", msgList)
+                let msgBox = document.querySelector(".msgbox ul");
+                for (let i = msgList.length - 1; i >= 0; i--) {
+                    let msgLabel = null;
+                    if (msgList[i].userId == data.userId) {
+                        msgLabel = createMessageLabel(msgList[i], "self");
+                    } else {
+                        msgLabel = createMessageLabel(msgList[i], "friend");
+                    }
+                    msgBox.appendChild(msgLabel);
+                }
+            }
+            formatMsgbar();
+        });
+    }
+
+
+    // 加载当前的群组的成员
+    let loadGroupMember = function () {
+        let memberList = null;
+        let memberContainer = document.querySelector(".member-list")
+        getGroupMember({userId: data.userId, groupId: data.selectedGroupId}, function (isSuccess, data) {
+            if (isSuccess) {
+                memberList = data;
+                for (let i = 0; i < memberList.length; i++) {
+                    let labelInfo = {
+                        userId: memberList[i].userId,
+                        username: memberList[i].username,
+                        url: "#",
+                    }
+                    memberContainer.appendChild(createMemberLabel(labelInfo));
+                }
+            }
+        });
+    }
+
+    // 刷新和加载当前群组的信息
+    let loadGroupInfo = function () {
+        let nowGroupInfo = null;
+        for (let i = 0; i < data.groupListInfo.length; i++) {
+            if (data.groupListInfo[i].groupId == data.selectedGroupId) {
+                nowGroupInfo = data.groupListInfo[i];
+                break;
+            }
+        }
+        let noticeContainer = document.querySelector(".scrollable-notice-container");
+        noticeContainer.innerText = nowGroupInfo.notice;
+    }
+
+    // 处理群组选择,点击后将选择的群组信息刷到data内
+    let handleSelectGroup = function () {
+        if(window.innerWidth<800){
+            let groupbox=document.querySelector(".group-message-body");
+            groupbox.style.display="block";
+            groupbox.style.width="100%";
+            document.querySelector(".group-list-body").style.display="none";
+            let chatMainBox = document.querySelector(".group-msg-textbox");
+            chatMainBox.style.display="block";
+            chatMainBox.style.width="100%";
+        }
+        let btn = this;
+        data.selectedGroupId = btn.querySelector("input[type='hidden']").value;
+        console.log("当前选择的群组是:" + data.selectedGroupId);
+        // 设置当前选择的选择的群聊的名称
+        let groupDetailName = document.querySelector(".selected-group-name");
+        groupDetailName.innerText = this.querySelector(".group-name").innerText;
+
+        // 清空当前的消息列表
+        let messageBox = document.querySelector(".msgbox ul");
+        messageBox.innerText = "";
+        console.log("加载消息列表...")
+        // 加载消息列表
+        loadMessage();
+
+        // 清空当前的公告
+        let noticeBox = document.querySelector(".scrollable-notice-container");
+        noticeBox.innerText = "";
+
+        // 加载公告
+        loadGroupInfo();
+
+        // 清空当前的群成员列表
+        let memberList = document.querySelector(".member-list");
+        memberList.innerText = "";
+
+        // 加载当前的群成员列表
+        loadGroupMember();
+
+        // 开启新的socket连接
+    }
+    // 加载用户个人信息
+    let loadSelfInfo = function () {
+        let selfInfo = null;
+        getSelfInfo(data.userId, function (isSuccess, responseData) {
+            if (isSuccess) {
+                selfInfo = responseData;
+                document.querySelector(".picture-userInfo-setting .username").innerText = selfInfo.username;
+                data.username=selfInfo.username;
+            }
+        });
+
+    }
+
+    // 加载左侧的群组列表
+    let loadGroupLabel = function () {
+        let groupList = null;
+
+        let getUserBelongGroupPromise = new Promise((resolve, reject) => {
+            getUserBelongGroup(data.userId, function (success, responseData) {
+                if (success) {
+                    groupList = responseData;
+                    data.groupListInfo = responseData;
+                    resolve();
+                } else {
+                    reject();
+                }
+            });
+        });
+
+        getUserBelongGroupPromise.then(() => {
+            console.log("收到群组信息", groupList);
+
+            // 开始刷新左侧群组列表
+            let labelContainer = document.querySelector(".group-list");
+            labelContainer.innerHTML = "";
+            for (let i = 0; i < groupList.length; i++) {
+                let label = createGroupBar({groupId: groupList[i].groupId, groupName: groupList[i].groupName});
+                labelContainer.appendChild(label);
+            }
+
+            // 执行后续操作
+            let groupLabels = document.querySelectorAll(".group-label");
+            for (let i = 0; i < groupLabels.length; i++) {
+                // 添加响应函数,当点击群组图标的时候就把选择的组号刷到data里
+                groupLabels[i].addEventListener("click", handleSelectGroup);
+            }
+        });
+    };
+
+
+    // 处理文本输入框的信息发送
+    let handleSendMessage = function () {
+        if (data.selectedGroupId === null || data.selectedGroupId === undefined) {
+            return;
+        }
+        let msg = {
+            userId: data.userId,
+            username:data.username,
+            groupId: data.selectedGroupId,
+            type: "text",
+            content: document.querySelector(".inputmsg").value,
+        }
+        // 向服务器发送socket,让服务器向其他人转发
+        if (data.socket != undefined) {
+            data.socket.send(JSON.stringify(msg));
+        }
+        if (msg.content == "") {
+            return;
+        }
+        sendMsg(msg, function (isSuccess) {
+            if (isSuccess) {
+                document.querySelector(".inputmsg").value = "";
+            }
+        })
+
+    }
+    // 判断消息窗口是不是在最低端
+    let isAtBottom=function (element){
+        return !(element.scrollHeight - element.scrollTop === element.clientHeight);
+    }
+    let onCreate = function () {
+        data.userId = getParameterByName("userId");
+
+        // 加载群组列表
+        loadGroupLabel();
+
+        // 加载个人信息
+        loadSelfInfo();
+
+        // 为点击按钮添加响应函数
+        document.querySelector(".submit").addEventListener("click", handleSendMessage);
+
+        // 为输入框添加enter发送
+        document.querySelector(".inputmsg").addEventListener("keydown",function (event){
+            if(event.keyCode===13){
+                handleSendMessage();
+            }
+        });
+
+        // 添加是否自动滚动的函数
+        document.querySelector(".msgbox").addEventListener("scroll",function (){
+            if(isAtBottom(this)){
+                data.isAutoScroll=true;
+            }else {
+                data.isAutoScroll=false;
+            }
+        });
+
+        // 为返回列表按钮加上响应事件
+        document.querySelector(".returnGroupList").addEventListener("click",function (){
+            if(window.innerWidth<800){
+                let messageBox=document.querySelector(".group-message-body");
+                let groupList=document.querySelector(".group-list-body");
+                messageBox.style.display="none";
+                groupList.style.display="block";
+            }
+        });
+
+        // 修正模块的显示
+        window.addEventListener('resize', function (){
+            let groupList=document.querySelector(".group-list-body");
+            let groupMain=document.querySelector(".group-message-body");
+            let groupChatBox=document.querySelector(".group-msg-textbox");
+            let memberList=document.querySelector(".memberlist-notice");
+            if(window.innerWidth>=1400){
+                groupList.style.display="block";
+                groupMain.style.display="block";
+                groupChatBox.style.display="block";
+                memberList.style.display="block";
+
+                groupList.style.width="400px";
+                groupMain.style.width="calc(100vw - 400px)";
+                groupChatBox.style.width="80%";
+                memberList.style.width="20%";
+            }
+            else if(window.innerWidth<1400&&window.innerWidth>=800){
+                groupList.style.display="block";
+                groupMain.style.display="block";
+                groupChatBox.style.display="block";
+                memberList.style.display="none";
+                groupList.style.width="400px";
+                groupChatBox.style.width="100%";
+            }
+            else {
+                groupList.style.display="block";
+                groupMain.style.display="none";
+                groupChatBox.style.display="none";
+                memberList.style.display="none";
+                groupList.style.width="100%";
+            }
+        });
+
+        // 打开WebSocket连接
+        openWebSocket();
+    };
+    // 页面加载执行的代码
+    document.addEventListener('DOMContentLoaded', onCreate);
+    // 页面关闭执行的代码
+    window.addEventListener('unload', function () {
+        // 在页面关闭时执行的操作
+        data.socket.close();
+    });
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agarwood.webchatapp.mapper.MessageMapper">
+    <resultMap type="Message" id="MessageResult">
+        <result property="userId" column="user_id" />
+        <result property="headSculptureUrl" column="head_sculpture_url" />
+        <result property="groupId" column="group_id" />
+        <result property="type" column="type" />
+        <result property="content" column="content" />
+        <result property="createTime" column="create_time" />
+    </resultMap>
+
+    <resultMap type="GroupBase" id="GroupBaseResult">
+        <result property="userId" column="user_id" />
+        <result property="groupId" column="group_id" />
+        <result property="groupName" column="group_name" />
+        <result property="notice" column="notice" />
+    </resultMap>
+
+    <insert id="receiveMessage" parameterType="Message">
+        INSERT INTO msg
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="groupId != null">group_id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="type != null">type,</if>
+            <if test="content != null">content,</if>
+            <if test="createTime != null">create_time,</if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="groupId != null">#{groupId},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="type != null">#{type},</if>
+            <if test="content != null">#{content},</if>
+            <if test="createTime != null">#{createTime},</if>
+        </trim>
+    </insert>
+
+    <select id="getLatestMessage" parameterType="GroupBase" resultType="Message">
+        SELECT msg.user_id AS user_id,username,head_sculpture_url,group_id,type,content,create_time FROM msg JOIN `user` ON user.user_id=msg.user_id WHERE group_id = #{groupId} ORDER BY create_time DESC LIMIT 100;
+    </select>
+
+</mapper>

@@ -1,0 +1,761 @@
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.eot?4r9756');
+    src: url('../fonts/icomoon.eot?4r9756#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf?4r9756') format('truetype'),
+        url('../fonts/icomoon.woff?4r9756') format('woff'),
+        url('../fonts/icomoon.svg?4r9756#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+.mainbody {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+
+    /* 待删除 */
+    background-color: #eee;
+}
+
+/* 左侧的消息部分 */
+.group-list-body {
+    width: 400px;
+    height: 100%;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* 列表顶头部分,包含头像,在线状态,设置 */
+.picture-userInfo-setting {
+    width: 100%;
+    height: 60px;
+
+    position: relative;
+
+    background-color: #176b87;
+
+    color: #dafffb;
+}
+
+.picture {
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    top: 12.5%;
+    left: 7.5px;
+    border-radius: 50%;
+    z-index: 1;
+
+
+    /* 待删除 */
+    text-align: center;
+    line-height: 45px;
+    color: white;
+    font-size: 15px;
+    font-weight: bolder;
+
+
+    background-color: purple;
+
+}
+
+/* 指针放在用户头像上显示的内容 */
+.user-detail {
+    width: 150px;
+    height: 300px;
+    position: absolute;
+    top: 100%;
+    display: none;
+}
+
+.user-detail .indicator {
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-width: 0;
+
+    position: absolute;
+    left: 12.5px;
+    top: 0;
+
+    /* 待删除 */
+    border-bottom-color: #dafffb;
+}
+
+
+.user-detail .detail {
+    width: 100%;
+    height: calc(100% - 5px);
+
+    border-radius: 5px;
+
+    position: absolute;
+    top: 5px;
+    left: 0;
+
+    background-color: #dafffb;
+
+}
+
+.picture:hover .user-detail {
+    display: block;
+}
+
+/* 名字和状态栏 */
+.userInfo {
+    height: 45px;
+    width: 150px;
+
+    position: absolute;
+    left: 60px;
+    top: 12.5%;
+
+}
+
+/* 状态栏里的用户名 */
+.userInfo .username {
+    height: 30px;
+
+    font-size: 18px;
+    font-weight: bolder;
+    line-height: 30px;
+}
+
+/* 状态栏里的在线状态 */
+.userInfo .onlinestatus {
+    height: 15px;
+
+    font-size: 12px;
+    line-height: 15px;
+}
+
+/* 设置按钮 */
+.setting {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    top: 7.5px;
+    right: 7.5px;
+
+    cursor: pointer;
+
+    text-align: center;
+    font-family: icomoon;
+    font-size: 30px;
+    line-height: 45px;
+
+}
+
+/* 群组列表部分 */
+.scrollable-list-container {
+    width: 100%;
+    max-height: calc(100vh - 60px);
+    position: relative;
+
+    overflow-y: auto;
+
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 11 */
+
+}
+
+.scrollable-list-container::-webkit-scrollbar {
+    display: none;
+    /* WebKit (Chrome, Safari, etc.) */
+}
+
+.scrollable-list-container li {
+    width: 100%;
+    height: 80px;
+    position: relative;
+
+    background-color: #dafffb;
+}
+
+.group-label {
+    width: 90%;
+    height: 100%;
+
+    display: block;
+
+    position: absolute;
+    left: 5%;
+    top: 0;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* 内部的高度是60px */
+    background-color: #dafffd;
+    border-bottom: 1px solid #04364a;
+
+    text-align: left;
+}
+
+.group-picture {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+
+    position: absolute;
+    left: 0;
+    top: 10px;
+
+    /* 待删除 */
+    background-color: blueviolet;
+    line-height: 60px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+
+.group-msg-container {
+    width: calc(100% - 75px);
+    height: 60px;
+
+    position: absolute;
+    top: 10px;
+    right: 0;
+
+}
+
+.group-name {
+    height: 40px;
+
+    position: relative;
+
+    line-height: 40px;
+    font-size: 23px;
+    font-weight: bolder;
+}
+
+.latest-msg {
+    height: 20px;
+
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.latest-msg-time {
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+/* 右侧的消息部分 */
+.group-message-body {
+    width: calc(100vw - 400px);
+    height: 100%;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    background-color: black;
+}
+
+/* 群聊的头 */
+.group-nav {
+    width: 100%;
+    height: 60px;
+
+    position: relative;
+
+    background-color: #04364a;
+
+    color: #dafffb;
+}
+
+.group-detail-name {
+    height: 45px;
+    position: absolute;
+    left: 7.5px;
+    top: 7.5px;
+
+    line-height: 45px;
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.group-detail-name>button {
+    font-family: 'icomoon';
+    color: inherit;
+}
+
+.group-function-options {
+    height: 45px;
+    position: absolute;
+    top: 7.5px;
+    right: 15px;
+
+}
+
+.function-options-container {
+    height: 45px;
+
+}
+
+.option-box {
+    width: 45px;
+    height: 45px;
+    margin-left: 15px;
+
+    float: right;
+
+}
+
+.option-box>button {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-family: 'icomoon';
+    font-size: 20px;
+    line-height: 45px;
+    color: inherit;
+}
+
+/* 群聊头结束 */
+
+/* 群聊主体 */
+.group-msg-member {
+    width: 100%;
+    height: calc(100% - 60px);
+    position: relative;
+    /* 待删除 */
+    background-color: lightcoral;
+}
+
+
+.memberlist-notice {
+    height: 100%;
+    width: 20%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+
+
+/* 聊天部分 */
+.group-msg-textbox {
+    height: 100%;
+    width: 80%;
+
+    position: relative;
+
+}
+
+.msgbox {
+    width: 100%;
+    /* height: calc(100vh - 35% - 60px); */
+    height: 65%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column-reverse;
+
+    background-color: #64ccc5;
+
+    overflow-y: scroll;
+
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 11 */
+
+}
+
+.msgbox::-webkit-scrollbar {
+    display: none;
+    /* WebKit (Chrome, Safari, etc.) */
+}
+
+/* 消息气泡 */
+.msgbar {
+    width: 100%;
+    min-height: 45px;
+    position: relative;
+    overflow: visible;
+    margin-top: 7px;
+    margin-bottom: 8px;
+}
+
+.msgbar .userpicture {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 0;
+
+    background-color: orange;
+}
+
+.msg-username {
+    height: 15px;
+    position: absolute;
+    top: 0;
+
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.msg-text {
+    max-width: 80%;
+    padding: 5px;
+    position: absolute;
+    top: 20px;
+    background-color: #dafffb;
+    border-radius: 10px;
+
+    font-size: 16px;
+}
+
+.friend .msg-username {
+    left: 75px;
+}
+
+.friend .userpicture {
+
+    left: 15px;
+}
+
+.friend .msg-text {
+    left: 75px;
+}
+
+.self .msg-username {
+    right: 75px;
+}
+
+.self .userpicture {
+
+    right: 15px;
+}
+
+.self .msg-text {
+    right: 75px;
+}
+
+/* 文本输入部分(包含功能标志和文本域 */
+.textbox {
+    width: 100%;
+    height: 35%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    /* 待删除 */
+    background-color: #176b87;
+}
+
+.input-functions-bar {
+    width: 100%;
+    height: 35px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    border-top: 1px solid #fff;
+    /* 待删除 */
+    background-color: #176b87;
+
+    color: #dafffb;
+}
+
+.input-functions-container {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.input-functions-container {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.input-functions-container li {
+    margin-left: 25px;
+    margin-top: 2.5px;
+    float: left;
+}
+
+.input-functions-container button {
+    width: 30px;
+    height: 30px;
+
+    text-align: center;
+    font-size: 20px;
+    line-height: 30px;
+    font-family: 'icomoon';
+    color: inherit;
+}
+
+.history-msg {
+    width: 30px;
+    height: 30px;
+
+    position: absolute;
+    top: 2.5px;
+    right: 25px;
+
+    text-align: center;
+    font-size: 20px;
+    line-height: 30px;
+    font-family: 'icomoon';
+
+    color: inherit;
+}
+
+.inputmsg {
+    width: 100%;
+    height: calc(100% - 35px - 35px);
+
+    background-color: #dafffb;
+
+    position: absolute;
+    left: 0;
+    bottom: 35px;
+
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.submit {
+    width: 80px;
+    height: 30px;
+    position: absolute;
+    right: 30px;
+    bottom: 2.5px;
+
+    background-color: #64ccc5;
+    border-radius: 5px;
+
+    text-align: center;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+
+/* 群公告和群员列表 */
+.notice{
+    width: 100%;
+    height: 35%;
+
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #64ccc5;
+}
+
+
+.memberlist{
+    width: 100%;
+    height: 65%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #64ccc5;
+    border-left: 1px solid #fff;
+
+}
+
+.title-bar{
+    width: 100%;
+    height: 60px;
+    top: 0;
+    left: 0;
+    background-color: #176b87;
+}
+
+.notice-title{
+    width: 95%;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    left: 2.5%;
+    /* border-bottom: 1px solid #fff; */
+
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 60px;
+
+    color: #dafffb;
+}
+
+.scrollable-notice-container{
+    width: 90%;
+    height: calc(100% - 60px);
+    overflow-y: scroll;
+
+    position: absolute;
+    top: 60px;
+    left: 5%;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 11 */
+
+    font-size: 16px;
+
+}
+
+.scrollable-notice-container::-webkit-scrollbar {
+    display: none;
+    /* WebKit (Chrome, Safari, etc.) */
+}
+/* 公告栏结束 */
+/* 成员列表 */
+
+.member-title-search{
+    width: 90%;
+    height: 60px;
+
+    position: absolute;
+    top: 0;
+    left: 5%;
+}
+
+.member-title{
+    height: 100%;
+    line-height: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    font-size: 20px;
+    font-weight: bold;
+    color: #dafffb;
+}
+
+.member-search{
+    height: 100%;
+    /* width: 60px; */
+    line-height: 60px;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    font-family: 'icomoon';
+
+    font-size: 20px;
+    color: #dafffb;
+
+}
+
+/* 群员标签开始 */
+.scrollable-member-container{
+    width: 90%;
+    height: calc(100% - 60px);
+    position: absolute;
+    top: 60px;
+    left: 5%;
+
+
+    overflow-y: scroll;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 11 */
+
+    font-size: 16px;
+
+}
+
+.scrollable-member-container::-webkit-scrollbar {
+    display: none;
+    /* WebKit (Chrome, Safari, etc.) */
+}
+
+.member-list{
+    width: 100%;
+    position: relative;
+}
+
+.member-list li{
+    width: 100%;
+    height: 40px;
+    position: relative;
+}
+
+.member-list li a{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+}
+
+.member-picture{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 5px;
+    left: 10px;
+
+    /* 字体填充 */
+    background-color: blue;
+}
+
+.member-name{
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 50px;
+
+    line-height: 40px;
+    font-size: 16px;
+}
+
+.admin{
+    color: red;
+}
+
+
+@media (max-width: 1400px) {
+    .memberlist-notice {
+        display: none;
+        /* 当浏览器宽度缩小到600px以下时，隐藏 .memberlist-notice */
+    }
+
+    .group-msg-textbox {
+        width: 100%;
+        /* 同时将 .group-msg-textbox 的宽度设置为100% */
+    }
+}
+
+@media (max-width: 800px) {
+    .group-message-body {
+        display: none;
+    }
+
+    .group-list-body {
+        width: 100%;
+    }
+}
